@@ -1,0 +1,11 @@
+GET http://localhost:8081/api/orders
+Accept: application/json
+
+### //PENDING, IN_PROGRESS, DELIVERED, CANCELED
+
+PUT http://localhost:8081/api/orders/66373c13-d55f-4a6b-9363-273126a52a27
+Content-Type: application/json
+
+{
+    "status": "IN_PROGRESS"
+}

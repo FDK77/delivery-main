@@ -1,0 +1,69 @@
+type Query {
+    deliverers(nameFilter: String): [DelivererOutput]
+    orders(customerNameFilter: String): [OrderOutput]
+}
+
+type Mutation {
+    addDeliverer(deliverer: InputDeliverer): DelivererOutput
+    updateDeliverer(id: String!, deliverer: InputDeliverer): DelivererOutput
+    deleteDeliverer(id: String!): Boolean
+    addOrder(order: InputOrder): OrderOutput
+    updateOrder(id: String!, order: InputOrder): OrderOutput
+    deleteOrder(id: String!): Boolean
+}
+
+input InputDeliverer {
+    name: String!
+    phoneNumber: String!
+    email: String!
+    vehicleType: String!
+    rating: Float!
+}
+
+type DelivererOutput {
+    name: String
+    id: String
+    phoneNumber: String
+    email: String
+    vehicleType: String
+    rating: Float
+}
+
+type OrderOutput {
+    id: String!
+    orderDate: String!
+    customerName: String!
+    customerAddress: String!
+    orderCost: Float!
+    deliveryInstructions: String
+    deliveryDate: String
+    status: Status!
+    deliverer: DelivererOutput
+    customerLongitude: Float!
+    customerLatitude: Float!
+    delivererLatitude: Float!
+    delivererLongitude: Float!
+}
+
+input InputOrder {
+    orderDate: String!
+    customerName: String!
+    customerAddress: String!
+    orderCost: Float!
+    deliveryInstructions: String
+    deliveryDate: String
+    status: Status!
+    delivererId: String!
+    customerLongitude: Float!
+    customerLatitude: Float!
+    delivererLatitude: Float!
+    delivererLongitude: Float!
+}
+
+enum Status {
+    ASSEMBLING
+    IN_TRANSIT
+    ARRIVED
+    DELIVERED
+    CANCELED
+}
